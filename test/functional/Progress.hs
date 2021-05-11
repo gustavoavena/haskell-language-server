@@ -44,13 +44,14 @@ tests =
                 expectProgressReports ["Setting up testdata (for Format.hs)", "Processing", "Indexing"]
                 _ <- sendRequest STextDocumentFormatting $ DocumentFormattingParams Nothing doc (FormattingOptions 2 True Nothing Nothing Nothing)
                 expectProgressReports ["Formatting Format.hs"]
-        , testCase "fourmolu plugin sends progress notifications" $ do
-            runSession hlsCommand progressCaps "test/testdata/format" $ do
-                sendNotification SWorkspaceDidChangeConfiguration (DidChangeConfigurationParams (formatLspConfig "fourmolu"))
-                doc <- openDoc "Format.hs" "haskell"
-                expectProgressReports ["Setting up testdata (for Format.hs)", "Processing", "Indexing"]
-                _ <- sendRequest STextDocumentFormatting $ DocumentFormattingParams Nothing doc (FormattingOptions 2 True Nothing Nothing Nothing)
-                expectProgressReports ["Formatting Format.hs"]
+        -- TODO: move this test case
+        -- , testCase "fourmolu plugin sends progress notifications" $ do
+        --     runSession hlsCommand progressCaps "test/testdata/format" $ do
+        --         sendNotification SWorkspaceDidChangeConfiguration (DidChangeConfigurationParams (formatLspConfig "fourmolu"))
+        --         doc <- openDoc "Format.hs" "haskell"
+        --         expectProgressReports ["Setting up testdata (for Format.hs)", "Processing", "Indexing"]
+        --         _ <- sendRequest STextDocumentFormatting $ DocumentFormattingParams Nothing doc (FormattingOptions 2 True Nothing Nothing Nothing)
+        --         expectProgressReports ["Formatting Format.hs"]
         , ignoreTestBecause "no liquid Haskell support" $
             testCase "liquid haskell plugin sends progress notifications" $ do
                 runSession hlsCommand progressCaps "test/testdata" $ do

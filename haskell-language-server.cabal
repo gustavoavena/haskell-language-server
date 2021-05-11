@@ -258,10 +258,7 @@ common floskell
 
 common fourmolu
   if flag(fourmolu) || flag(all-formatters)
-    hs-source-dirs: plugins/default/src
-    other-modules: Ide.Plugin.Fourmolu
-    build-depends: fourmolu                 ^>=0.3
-    cpp-options: -Dfourmolu
+    build-depends: hls-fourmolu-plugin ^>= 1.0.0.0
 
 common ormolu
   if flag(ormolu) || flag(all-formatters)
